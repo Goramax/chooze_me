@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Image } from '../../images/entities/image.entity';
+import { BusinessSector } from 'src/business_sectors/entities/business_sector.entity';
 
 type CompanyProperties = Required<Company>;
 export enum State {
@@ -15,36 +23,55 @@ export class Company {
     unique: true,
   })
   public login?: string;
+
   @Column({
     unique: true,
   })
   public email?: string;
+
   @Column()
   public name?: string;
+
   @Column()
   public address?: string;
+
   @Column()
   public city?: string;
+
   @Column()
   public zipCode?: string;
+
   @Column()
   public siret?: string;
+
   @Column()
   public employees?: number;
+  // image array for multiple images of the company
+  @OneToMany(() => Image, (image) => image.company)
+  public images?: Image[];
+
+  @ManyToOne(() => BusinessSector, (businessSector) => businessSector.id)
+  public businessSector?: BusinessSector;
+
   @Column()
   public phone?: string;
+
   @Column()
   public password?: string;
+
   @Column()
   public salt?: string;
+
   @Column({
     type: 'enum',
     enum: State,
     default: State.ACTIVE,
   })
   public state: State = State.ACTIVE;
+
   @Column()
   public createdAt: Date = new Date();
+
   @Column()
   public updatedAt: Date = new Date();
 

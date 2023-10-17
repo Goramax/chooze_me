@@ -1,7 +1,7 @@
 import { Address } from 'src/addresses/entities/address.entity';
 import { BusinessSector } from 'src/business_sectors/entities/business_sector.entity';
 import { Contract } from 'src/contracts/entities/contract.entity';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 type JobAdProperties = Required<JobAd>;
 
@@ -13,11 +13,11 @@ export class JobAd {
   public title?: string;
   @Column()
   public description?: string;
-  @Column()
-  public type?: Contract;
-  @Column()
+  @ManyToOne(() => BusinessSector, (businessSector) => businessSector.id)
   public businessSector?: BusinessSector;
-  @Column()
+  @ManyToOne(() => Contract, (contract) => contract.id)
+  public contract?: Contract;
+  @ManyToOne(() => Address, (address) => address.id)
   public location?: Address;
   @Column()
   public salary?: string;
@@ -29,8 +29,8 @@ export class JobAd {
     jobAd.id = value.id;
     jobAd.title = value.title;
     jobAd.description = value.description;
-    jobAd.type = value.type;
     jobAd.businessSector = value.businessSector;
+    jobAd.contract = value.contract;
     jobAd.location = value.location;
     jobAd.salary = value.salary;
     jobAd.state = value.state;

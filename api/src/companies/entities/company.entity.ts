@@ -1,8 +1,10 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Image } from '../../images/entities/image.entity';
@@ -56,6 +58,10 @@ export class Company {
   @Column()
   public phone?: string;
 
+  @OneToOne(() => Image)
+  @JoinColumn()
+  public logo?: Image;
+
   @Column()
   public password?: string;
 
@@ -87,6 +93,7 @@ export class Company {
     company.siret = value.siret;
     company.employees = value.employees;
     company.phone = value.phone;
+    company.logo = value.logo;
     company.password = value.password;
     company.salt = value.salt;
     company.state = value.state;

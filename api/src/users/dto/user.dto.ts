@@ -22,6 +22,8 @@ export class UserDto {
   @ApiProperty()
   password: string;
   @ApiProperty()
+  salt: string;
+  @ApiProperty()
   createdAt: Date;
   @ApiProperty()
   updatedAt: Date;

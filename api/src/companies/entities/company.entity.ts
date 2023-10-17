@@ -1,13 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-type UserProperties = Required<User>;
+type CompanyProperties = Required<Company>;
 export enum State {
   ACTIVE = 'ACTIVE',
   DEACTIVATED = 'DEACTIVATED',
 }
 
 @Entity()
-export class User {
+export class Company {
   @PrimaryGeneratedColumn()
   public id?: number;
 
@@ -20,9 +20,7 @@ export class User {
   })
   public email?: string;
   @Column()
-  public firstName?: string;
-  @Column()
-  public lastName?: string;
+  public name?: string;
   @Column()
   public address?: string;
   @Column()
@@ -30,9 +28,9 @@ export class User {
   @Column()
   public zipCode?: string;
   @Column()
-  public birthDate?: Date;
+  public siret?: string;
   @Column()
-  public cv?: string;
+  public employees?: number;
   @Column()
   public phone?: string;
   @Column()
@@ -50,24 +48,23 @@ export class User {
   @Column()
   public updatedAt: Date = new Date();
 
-  public static fromProperties(value: UserProperties): User {
-    const user = new User();
-    user.id = value.id;
-    user.login = value.login;
-    user.email = value.email;
-    user.firstName = value.firstName;
-    user.lastName = value.lastName;
-    user.address = value.address;
-    user.city = value.city;
-    user.zipCode = value.zipCode;
-    user.birthDate = value.birthDate;
-    user.cv = value.cv;
-    user.phone = value.phone;
-    user.password = value.password;
-    user.salt = value.salt;
-    user.state = value.state;
-    user.createdAt = value.createdAt;
-    user.updatedAt = value.updatedAt;
-    return user;
+  public static fromProperties(value: CompanyProperties): Company {
+    const company = new Company();
+    company.id = value.id;
+    company.login = value.login;
+    company.email = value.email;
+    company.name = value.name;
+    company.address = value.address;
+    company.city = value.city;
+    company.zipCode = value.zipCode;
+    company.siret = value.siret;
+    company.employees = value.employees;
+    company.phone = value.phone;
+    company.password = value.password;
+    company.salt = value.salt;
+    company.state = value.state;
+    company.createdAt = value.createdAt;
+    company.updatedAt = value.updatedAt;
+    return company;
   }
 }

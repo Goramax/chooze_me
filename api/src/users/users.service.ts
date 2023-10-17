@@ -10,6 +10,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ListFilter } from './entities/filters.entity';
 import { User } from './entities/user.entity';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class UsersService {
@@ -29,6 +30,13 @@ export class UsersService {
     if (emailUser != null) {
       throw new ConflictException('existing email');
     }
+    // hash password with crypto
+    const salt = crypto.randomBytes(16).toString('hex');
+    const hash = crypto
+      .pbkdf2Sync(createUserDto.password, salt, 1000, 64, 'sha512')
+      .toString('hex');
+    createUserDto.password = hash;
+    createUserDto.salt = salt;
 
     return this.usersRepository.save({
       ...createUserDto,

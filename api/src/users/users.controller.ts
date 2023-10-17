@@ -7,11 +7,11 @@ import {
   Param,
   Delete,
   Query,
-  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { UserSimpleListDto } from './dto/user-list-simple.dto';
 import {
   ApiConflictResponse,
   ApiCreatedResponse,
@@ -22,11 +22,9 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { UserDto } from './dto/user.dto';
-import { BasicAuthGuard } from './auth/basic-auth.guard';
 
 @Controller('users')
 @ApiTags('users')
-@UseGuards(BasicAuthGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -54,18 +52,18 @@ export class UsersController {
   })
   @ApiOkResponse({
     description: 'List of users',
-    type: [UserDto],
+    type: [UserSimpleListDto],
   })
   async findAll(
     @Query('login') login?: string,
     @Query('email') email?: string,
-  ): Promise<UserDto[]> {
+  ): Promise<UserSimpleListDto[]> {
     console.log({ login, email });
     const users = await this.usersService.findAll({
       login,
       email,
     });
-    return users.map((user) => new UserDto(user));
+    return users.map((user) => new UserSimpleListDto(user));
   }
 
   @Get(':id')

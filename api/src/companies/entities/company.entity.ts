@@ -2,13 +2,15 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
+  JoinTable,
+  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Image } from '../../images/entities/image.entity';
 import { BusinessSector } from 'src/business_sectors/entities/business_sector.entity';
+import { JobAd } from 'src/job_ad/entities/job_ad.entity';
 
 type CompanyProperties = Required<Company>;
 export enum State {
@@ -52,8 +54,9 @@ export class Company {
   @OneToMany(() => Image, (image) => image.company)
   public images?: Image[];
 
-  @ManyToOne(() => BusinessSector, (businessSector) => businessSector.id)
-  public businessSector?: BusinessSector;
+  @ManyToMany(() => BusinessSector)
+  @JoinTable()
+  public businessSectors?: BusinessSector[];
 
   @Column()
   public phone?: string;
@@ -61,6 +64,9 @@ export class Company {
   @OneToOne(() => Image)
   @JoinColumn()
   public logo?: Image;
+
+  @OneToMany(() => JobAd, (jobAds) => jobAds.company)
+  public jobAds?: JobAd[];
 
   @Column()
   public password?: string;
@@ -99,6 +105,7 @@ export class Company {
     company.state = value.state;
     company.createdAt = value.createdAt;
     company.updatedAt = value.updatedAt;
+    company.businessSectors = value.businessSectors;
     return company;
   }
 }

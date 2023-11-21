@@ -1,5 +1,6 @@
 import { Address } from 'src/addresses/entities/address.entity';
 import { BusinessSector } from 'src/business_sectors/entities/business_sector.entity';
+import { Company } from 'src/companies/entities/company.entity';
 import { Contract } from 'src/contracts/entities/contract.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -28,6 +29,9 @@ export class JobAd {
 
   @ManyToOne(() => Address, (address) => address.id)
   public location?: Address;
+
+  @ManyToOne(() => Company, (company) => company.jobAds)
+  public company?: Company;
 
   @Column({
     type: 'enum',

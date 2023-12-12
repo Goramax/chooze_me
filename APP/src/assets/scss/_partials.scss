@@ -1,0 +1,22 @@
+.btn {
+  display: flex;
+  padding: 18px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 100px;
+  text-decoration: none;
+
+  &--primary {
+    @extend .btn;
+    background-color: $color-primary;
+    color: white;
+  }
+  &--secondary {
+    @extend .btn;
+    background-color: white;
+    color: $color-font-primary;
+    border: 1px solid $color-font-primary;
+  }
+
+}

@@ -1,3 +1,5 @@
+// buttons
+
 .btn {
   display: flex;
   padding: 18px 24px;
@@ -6,17 +8,62 @@
   gap: 15px;
   border-radius: 100px;
   text-decoration: none;
-
+  border: 1px solid transparent;
   &--primary {
     @extend .btn;
-    background-color: $color-primary;
     color: white;
+    position: relative;
+    z-index: 1;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 100px;
+      background-color: $color-primary;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+    }
+    &:hover {
+      &::after {
+        transform: scale(0);
+        opacity: 0;
+        transition: all 0.3s ease-in-out;
+      }
+      color: $color-primary;
+      border-color: $color-primary;
+    }
   }
   &--secondary {
     @extend .btn;
-    background-color: white;
     color: $color-font-primary;
-    border: 1px solid $color-font-primary;
+    border-color: $color-primary;
+    position: relative;
+    z-index: 1;
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-radius: 100px;
+      background-color: transparent;
+      transition: all 0.3s ease-in-out;
+      z-index: -1;
+      transform: scale(0);
+    }
+    &:hover {
+      &::after {
+        width: 100%;
+        height: 100%;
+        transform: scale(1);
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+        background-color: $color-primary;
+      }
+      color: white;
+      border-color: transparent;
+    }
   }
-
 }

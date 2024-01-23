@@ -1,4 +1,25 @@
+// Colors
 
-$color-primary: #274C69;
+$color-primary: #274c69;
+
 $color-font-primary: #333333;
 $color-grey-light: #88888866;
+$color-border-primary: #333333;
+$color-border-secondary: #888888;
+
+// Borders
+
+$border-primary: 1px solid $color-border-primary;
+$border-secondary: 1px solid $color-border-secondary;
+$border-button: 1px solid $color-primary;
+$border-radius-primary: 100px;
+$border-radius-secondary: 50px;
+
+// Fonts sizes
+
+$font-xxxl: 60px;
+$font-xxl: 54px;
+$font-xl: 48px;
+$font-l: 24px;
+$font-m: 16px;
+$font-s: 12px;

@@ -1,19 +1,78 @@
 <script setup lang="ts">
-import Slider from "../components/Slider.vue";
+import { RouterLink, RouterView } from "vue-router";
+import SearchHome from "../components/search/SearchHome.vue";
 </script>
-
 <template>
   <main>
-    <Slider :items="[
-      {
-        image: 'https://images.unsplash.com/photo-1637710133707-688643e86b63?q=80&w=2076&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      },
-      {
-        image: 'https://images.unsplash.com/photo-1702234663985-c4ebc2fd94db?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      },
-      {
-        image: 'https://images.unsplash.com/photo-1682686578601-e7851641d52c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-      },
-    ]" />
+    <p class="home-top-text">Un outil pratique</p>
+    <h1 class="home-title">
+      Trouvez votre <b>prochain job</b><br />simplement.
+    </h1>
+    <p class="home-subtext">
+      Un service gratuit pour que chaque jeune puisse trouver un emploi
+    </p>
+    <SearchHome />
   </main>
+  <div class="squares-container">
+    <span class="square square__1"></span>
+    <span class="square square__2"></span>
+  </div>
 </template>
+
+<style scoped lang="scss">
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  h1 {
+    b {
+      color: $color-primary;
+    }
+    text-align: center;
+    font-weight: 900;
+    font-size: $font-xxxl;
+    margin: 0;
+  }
+  .home-top-text {
+    text-align: center;
+    font-size: $font-s;
+    color: $color-primary;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .home-subtext {
+    text-align: center;
+    font-size: $font-m;
+    color: $color-font-primary;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+}
+.squares-container {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    .square {
+      border: 4px solid $color-font-primary;
+      opacity: 0.2;
+      width: 395px;
+      height: 395px;
+      position: absolute;
+      z-index: -1;
+      &__1 {
+        top: 50%;
+        left: -100px;
+        transform: rotate(45deg);
+      }
+      &__2 {
+        bottom: -120px;
+        right: -82px;
+        transform: rotate(-20deg);
+      }
+    }
+  }
+</style>

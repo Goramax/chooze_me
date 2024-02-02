@@ -53,8 +53,14 @@
       </div>
     </form>
   </section>
-  <span class="prev" v-show="step > 1" @click="step--">Précédent</span>
-  <span class="next" v-show="step < maxStep" @click="step++">Suivant</span>
+  <div class="btn-container form-container-base">
+    <span class="prev btn--secondary" v-show="step > 1" @click="step--"
+      >Précédent</span
+    >
+    <span class="next btn--primary" v-show="step < maxStep" @click="step++"
+      >Suivant</span
+    >
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -95,6 +101,15 @@ onMounted(() => {
     font-weight: 900;
     text-align: center;
     font-size: $font-xxl;
+  }
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+  .next, .prev {
+    flex: 1;
   }
 }
 </style>

@@ -14,7 +14,7 @@ import IconMap from "./components/icons/IconMap.vue";
           <RouterLink to="/chercher">Trouver mon job</RouterLink>
           <RouterLink to="/messages">Messages</RouterLink>
           <RouterLink to="/communaute">Communauté</RouterLink>
-          <RouterLink to="/aide">Aide</RouterLink>
+          <RouterLink to="/aide-juridique">Assistance Juridique</RouterLink>
         </div>
       </div>
       <div class="middle">

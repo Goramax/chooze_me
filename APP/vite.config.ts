@@ -16,7 +16,9 @@ export default defineConfig({
         additionalData: `
           @import "./src/assets/scss/_fonts.scss";
           @import "./src/assets/scss/_variables.scss";
+          @import "./src/assets/scss/_animations.scss";
           @import "./src/assets/scss/_partials.scss";
+          @import "./src/assets/scss/form.scss";
         `
       }
     }

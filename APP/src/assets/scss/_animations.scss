@@ -1,0 +1,23 @@
+@keyframes floating1 {
+  0% {
+    transform: translateY(0px) rotate(45deg);
+  }
+  50% {
+    transform: translateY(15px) rotate(45deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(45deg);
+  }
+}
+
+@keyframes floating2 {
+  0% {
+    transform: translateY(15px) rotate(-20deg);
+  }
+  50% {
+    transform: translateY(0px) rotate(-20deg);
+  }
+  100% {
+    transform: translateY(15px) rotate(-20deg);
+  }
+}

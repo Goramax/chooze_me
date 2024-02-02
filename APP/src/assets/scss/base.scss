@@ -2,22 +2,53 @@
   overflow-x: hidden;
   font-family: "Outfit", sans-serif;
   font-display: swap;
+  ::selection {
+    background-color: $color-primary;
+    color: white;
+  }
 }
 body {
   margin: 0;
   padding: 0;
   font-size: 16px;
   color: $color-font-primary;
-  b{
+  b {
     color: $color-primary;
   }
-  #app{
+  #app {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
     position: relative;
-    main{
+    main {
       flex: 1;
+      position: relative;
+    }
+  }
+  main {
+    a {
+      color: $color-primary;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      position: relative;
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: $color-primary;
+        transition: width 0.3s;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+      }
     }
   }
 }

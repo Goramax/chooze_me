@@ -66,12 +66,14 @@ main {
       &__1 {
         top: 50%;
         left: -100px;
+        animation: floating1 6s ease-in-out infinite;
         transform: rotate(45deg);
       }
       &__2 {
         bottom: -120px;
         right: -82px;
         transform: rotate(-20deg);
+        animation: floating2 6s ease-in-out infinite;
       }
     }
   }

@@ -31,7 +31,7 @@ import IconMap from "./components/icons/IconMap.vue";
 
   <RouterView />
 
-  <footer>FOOTER</footer>
+  <!-- <footer>FOOTER</footer> -->
 </template>
 
 <style lang="scss">

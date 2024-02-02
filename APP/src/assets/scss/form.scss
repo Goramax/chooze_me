@@ -1,0 +1,90 @@
+form {
+  .form-group {
+    margin-bottom: 30px;
+    input {
+      font-size: $font-m;
+      &:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      textarea:-webkit-autofill,
+      textarea:-webkit-autofill:hover,
+      textarea:-webkit-autofill:focus,
+      select:-webkit-autofill,
+      select:-webkit-autofill:hover,
+      select:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0px 1000px #ffffff inset;
+      }
+    }
+    label {
+      font-size: $font-s;
+      text-transform: uppercase;
+      color: $color-font-primary;
+      font-weight: bold;
+      padding-left: 15px;
+      user-select: none;
+    }
+    input {
+      box-sizing: border-box;
+      &[type="text"],
+      &[type="email"],
+      &[type="password"],
+      &[type="number"],
+      &[type="date"] {
+        border: $border-primary;
+        border-radius: $border-radius-primary;
+        padding: 15px;
+        width: 100%;
+        max-width: 100%;
+        background-color: transparent;
+      }
+      &[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        appearance: none;
+        border: $border-primary;
+        border-width: 2px;
+        border-radius: 5px;
+        vertical-align: middle;
+        &:checked {
+          background-color: $color-primary;
+          border-color: $color-primary;
+          &::after {
+            content: "";
+            display: block;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0px 2px 2px 0px;
+            transform: rotate(45deg);
+            position: relative;
+            margin: 0 auto;
+          }
+        }
+      }
+    }
+  }
+  button {
+    &[type="submit"] {
+      border: $border-button;
+      border-radius: $border-radius-primary;
+      padding: 15px;
+      width: 100%;
+      max-width: 100%;
+      background-color: $color-primary;
+      color: white;
+      font-size: $font-m;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+  }
+}
+
+.form-container-base {
+  margin: 0 auto;
+  @media (min-width: $media-md) {
+    width: 400px;
+  }
+}

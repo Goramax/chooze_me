@@ -1,4 +1,3 @@
-import IconPerson from '../icons/IconPerson.vue';
 <template>
   <div class="main-search-container">
     <form class="search-container">
@@ -44,18 +43,14 @@ import IconSearch from "../icons/IconSearch.vue";
 
 <style scoped lang="scss">
 .main-search-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  padding: 20px 40px;
+  border-bottom: 1px solid $color-grey-light;
   .search-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 10px;
-    border: $border-secondary;
-    border-radius: $border-radius-primary;
     background-color: white;
-    width: 70%;
+    width: 100%;
     gap: 60px;
     .__left,
     .__right {
@@ -75,6 +70,9 @@ import IconSearch from "../icons/IconSearch.vue";
     .__right {
       flex: 2;
       justify-content: flex-end;
+      > span {
+        max-width: min-content;
+      }
     }
   }
   :deep(.search-btn) {

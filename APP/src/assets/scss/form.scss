@@ -88,3 +88,19 @@ form {
     width: 400px;
   }
 }
+
+.select-search {
+  select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right 15px top 50%;
+    &:focus{
+      outline: $border-secondary;
+      border-radius: 20px;
+    }
+  }
+}

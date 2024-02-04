@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
-import RegisterViewVue from '@/views/RegisterView.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +19,18 @@ const router = createRouter({
     {
       path: '/inscription',
       name: 'register',
-      component: RegisterViewVue
+      component: () => import('../views/RegisterView.vue')
+    },
+    {
+      path: '/trouver-un-job',
+      name: 'find-job',
+      component: () => import('../views/FindJobView.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name : 'not-found',
+      component: NotFoundView,
+      meta: { status: 404 }
     }
   ]
 })

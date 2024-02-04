@@ -1,58 +1,58 @@
 <template>
   <StepDisplay :maxStep="maxStep" :actualStep="step" />
-  <section v-show="step === 1" class="form-section">
-    <h2>Identité</h2>
-    <form class="form-container-base">
-      <div class="form-group">
-        <label for="lastname">Nom*</label>
-        <input type="text" id="lastname" placeholder="Nom" />
-      </div>
-      <div class="form-group">
-        <label for="firstname">Prénom*</label>
-        <input type="text" id="firstname" placeholder="Prénom" />
-      </div>
-      <div class="form-group">
-        <label>Date de naissance*</label>
-        <input type="date" :min="getMinDate()" :max="getDate()" />
-      </div>
-    </form>
-  </section>
-  <section v-show="step === 2" class="form-section">
-    <h2>Identification</h2>
-    <form class="form-container-base">
-      <div class="form-group">
-        <label for="email">Adresse mail*</label>
-        <input type="email" id="email" placeholder="Adresse mail" />
-      </div>
-      <div class="form-group">
-        <label for="password">Mot de passe*</label>
-        <input type="password" id="password" placeholder="Mot de passe" />
-      </div>
-      <div class="form-group">
-        <label for="password-confirm">Confirmer le mot de passe*</label>
-        <input
-          type="password"
-          id="password-confirm"
-          placeholder="Confirmer le mot de passe"
-        />
-      </div>
-    </form>
-  </section>
-  <section v-show="step === 3" class="form-section">
-    <h2>Adresse</h2>
-    <form class="form-container-base">
-      <div class="form-group">
-        <label for="job">Métier envisagé</label>
-        <select name="job" id="job">
-          <option value="" disabled selected>Chargement..</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="cv">CV (.pdf)</label>
-        <input type="file" id="cv" accept=".pdf" />
-      </div>
-    </form>
-  </section>
+    <section v-show="step === 1" class="form-section">
+      <h2>Identité</h2>
+      <form class="form-container-base">
+        <div class="form-group">
+          <label for="lastname">Nom*</label>
+          <input type="text" id="lastname" placeholder="Nom" />
+        </div>
+        <div class="form-group">
+          <label for="firstname">Prénom*</label>
+          <input type="text" id="firstname" placeholder="Prénom" />
+        </div>
+        <div class="form-group">
+          <label>Date de naissance*</label>
+          <input type="date" :min="getMinDate()" :max="getDate()" />
+        </div>
+      </form>
+    </section>
+    <section v-show="step === 2" class="form-section">
+      <h2>Identification</h2>
+      <form class="form-container-base">
+        <div class="form-group">
+          <label for="email">Adresse mail*</label>
+          <input type="email" id="email" placeholder="Adresse mail" />
+        </div>
+        <div class="form-group">
+          <label for="password">Mot de passe*</label>
+          <input type="password" id="password" placeholder="Mot de passe" />
+        </div>
+        <div class="form-group">
+          <label for="password-confirm">Confirmer le mot de passe*</label>
+          <input
+            type="password"
+            id="password-confirm"
+            placeholder="Confirmer le mot de passe"
+          />
+        </div>
+      </form>
+    </section>
+    <section v-show="step === 3" class="form-section">
+      <h2>Adresse</h2>
+      <form class="form-container-base">
+        <div class="form-group">
+          <label for="job">Métier envisagé</label>
+          <select name="job" id="job">
+            <option value="" disabled selected>Chargement..</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="cv">CV (.pdf)</label>
+          <input type="file" id="cv" accept=".pdf" />
+        </div>
+      </form>
+    </section>
   <div class="btn-container form-container-base">
     <span class="prev btn--secondary" v-show="step > 1" @click="step--"
       >Précédent</span
@@ -108,7 +108,8 @@ onMounted(() => {
   justify-content: center;
   margin-top: 20px;
   gap: 20px;
-  .next, .prev {
+  .next,
+  .prev {
     flex: 1;
   }
 }

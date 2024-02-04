@@ -11,7 +11,7 @@ import IconMap from "./components/icons/IconMap.vue";
           <img alt="Logo ChoozeMe" src="./assets/imgs/logo.png" />
         </RouterLink>
         <div class="menu">
-          <RouterLink to="/chercher">Trouver mon job</RouterLink>
+          <RouterLink to="/trouver-un-job">Trouver mon job</RouterLink>
           <RouterLink to="/messages">Messages</RouterLink>
           <RouterLink to="/communaute">Communauté</RouterLink>
           <RouterLink to="/aide-juridique">Assistance Juridique</RouterLink>
@@ -28,7 +28,6 @@ import IconMap from "./components/icons/IconMap.vue";
       </div>
     </div>
   </header>
-
   <RouterView />
 
   <!-- <footer>FOOTER</footer> -->
@@ -43,6 +42,7 @@ header {
   position: relative;
   border-bottom: 1px solid $color-grey-light;
   background-color: white;
+  z-index: 10;
   .header-container {
     display: flex;
     justify-content: space-between;
@@ -82,21 +82,21 @@ header {
         }
       }
     }
-    .middle{
+    .middle {
       display: flex;
       align-items: center;
-    .icon {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      height: $font-m;
-      width: auto;
-      svg {
-        max-height: 100%;
-        max-width: 100%;
-        stroke: $color-font-primary;
+      .icon {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        height: $font-m;
+        width: auto;
+        svg {
+          max-height: 100%;
+          max-width: 100%;
+          stroke: $color-font-primary;
+        }
       }
-    }
     }
   }
 }

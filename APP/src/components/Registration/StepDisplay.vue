@@ -1,10 +1,14 @@
 <template>
   <div class="step-display">
     <div class="step-text">
-      Étape <span class="actual">{{ actualStep }}</span>/<span class="max">{{ maxStep }}</span>
+      Étape <span class="actual">{{ actualStep }}</span
+      >/<span class="max">{{ maxStep }}</span>
     </div>
     <div class="progress-bar">
-        <div class="progress" :style="{ width: (actualStep / maxStep) * 100 + '%' }"></div>
+      <div
+        class="progress"
+        :style="{ width: (actualStep! / maxStep!) * 100 + '%' }"
+      ></div>
     </div>
   </div>
 </template>
@@ -38,6 +42,7 @@ defineProps({
     .progress {
       height: 100%;
       background-color: $color-primary;
+      transition: width 0.4s cubic-bezier(.47,1.64,.41,.8);
     }
   }
 }

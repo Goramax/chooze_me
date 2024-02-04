@@ -39,6 +39,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 2;
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: center;
@@ -46,6 +47,7 @@
 }
 .new-user,
 .new-company {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;

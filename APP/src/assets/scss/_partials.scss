@@ -53,3 +53,17 @@
     }
   }
 }
+
+.circle-icon{
+  border: $border-secondary;
+  border-width: 2px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

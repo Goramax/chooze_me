@@ -37,30 +37,6 @@ form {
         max-width: 100%;
         background-color: transparent;
       }
-      &[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        appearance: none;
-        border: $border-primary;
-        border-width: 2px;
-        border-radius: 5px;
-        vertical-align: middle;
-        &:checked {
-          background-color: $color-primary;
-          border-color: $color-primary;
-          &::after {
-            content: "";
-            display: block;
-            width: 5px;
-            height: 10px;
-            border: solid white;
-            border-width: 0px 2px 2px 0px;
-            transform: rotate(45deg);
-            position: relative;
-            margin: 0 auto;
-          }
-        }
-      }
     }
   }
   button {
@@ -77,6 +53,33 @@ form {
       transition: background-color 0.3s;
       &:hover {
         background-color: darken($color-primary, 10%);
+      }
+    }
+  }
+}
+
+input{
+  &[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    appearance: none;
+    border: $border-primary;
+    border-width: 2px;
+    border-radius: 5px;
+    vertical-align: middle;
+    &:checked {
+      background-color: $color-primary;
+      border-color: $color-primary;
+      &::after {
+        content: "";
+        display: block;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0px 2px 2px 0px;
+        transform: rotate(45deg);
+        position: relative;
+        margin: 0 auto;
       }
     }
   }

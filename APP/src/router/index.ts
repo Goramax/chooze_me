@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginViewVue from '@/views/LoginView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import RegisterViewVue from '@/views/RegisterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,7 +20,7 @@ const router = createRouter({
     {
       path: '/inscription',
       name: 'register',
-      component: () => import('../views/RegisterView.vue')
+      component: RegisterViewVue
     },
     {
       path: '/trouver-un-job',

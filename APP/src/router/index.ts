@@ -28,8 +28,23 @@ const router = createRouter({
       component: () => import('../views/FindJobView.vue')
     },
     {
+      path: '/aide-juridique',
+      name: 'legal-help',
+      component: () => import('../views/LegalAssistView.vue')
+    },
+    {
+      path: '/messages',
+      name: 'messages',
+      component: () => import('../views/MessagesView.vue')
+    },
+    {
+      path: '/annonce/:id',
+      name: 'job',
+      component: () => import('../views/JobDetailView.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
-      name : 'not-found',
+      name: 'not-found',
       component: NotFoundView,
       meta: { status: 404 }
     }

@@ -67,3 +67,15 @@
   justify-content: center;
   align-items: center;
 }
+
+:deep(.favorite-btn){
+  padding: 18px;
+  &:hover{
+    svg{
+      path{
+        stroke: $color-primary;
+        fill: $color-primary;
+      }
+    }
+  }
+}

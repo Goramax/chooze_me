@@ -1,12 +1,16 @@
 <template>
   <div class="card">
-    <div class="card__header">&lt;3</div>
+    <div class="card__header">
+      <span class="btn--primary favorite-btn"><IconHeart /></span>
+    </div>
     <div class="card__body">
       <div class="body__content">
         <span class="company">MyDigitalSchool</span>
         <h3 class="job-title">Développeur Web</h3>
         <div class="tags">
           <!-- v-for -->
+          <span class="tag">Contrat en apprentissage</span>
+          <span class="tag">CDD</span>
         </div>
         <div class="card__footer">
           <div class="infos">
@@ -16,12 +20,17 @@
             >
             <span class="location">Caen</span>
           </div>
-          <span class="btn--primary">Découvrir</span>
+          <RouterLink to="/annonce/1" class="btn--primary">Découvrir</RouterLink>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import IconHeart from "@/components/icons/IconHeart.vue";
+import { RouterLink } from "vue-router";
+</script>
 
 <style scoped lang="scss">
 .card {
@@ -49,8 +58,22 @@
     .company{
         font-size: $font-m;
     }
+    .tags{
+      display: flex;
+      gap: 10px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 10px 0;
+      .tag{
+        padding: 4px 8px;
+        border-radius: 24px;
+        border: 2px solid $color-font-primary;
+        font-size: $font-m;
+      }
+    }
   }
   .card__footer {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;

@@ -104,6 +104,7 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 20px;
     align-items: center;
     h2 {
       margin: 0;

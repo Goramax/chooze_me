@@ -7,7 +7,7 @@
           <span class="company">MyDigitalSchool</span>
           <h1>Développeur Web</h1>
           <div class="infos">
-            <span class="location">Caen</span>
+            <span class="location"><IconPlace />Caen</span>
             <!-- <span class="published-date">Publiée il y a 3 jours</span> -->
           </div>
           <div class="tags">
@@ -27,8 +27,33 @@
           </div>
         </div>
         <div class="other-details">
-          <div class="card-job-infos">Card1</div>
-          <div class="card-company-infos">Card2</div>
+          <div class="card-job-infos">
+            <span class="company">MyDigitalSchool</span>
+            <span class="job-title">Développeur Web</span>
+            <span class="salary"><b>2400€</b> / mois</span>
+            <div class="tags">
+              <span class="tag">Contrat en apprentissage</span>
+              <span class="tag">CDD</span>
+            </div>
+            <button class="btn--primary inverted">
+              Je postule !<IconSend />
+            </button>
+          </div>
+          <div class="card-company-infos">
+            <span class="sector">Éducation</span>
+            <span class="company">MyDigitalSchool</span>
+            <p class="short-desc">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="btn-container">
+              <RouterLink to="/entreprise/1" class="btn--primary"
+                >Découvrir l'entreprise</RouterLink
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,6 +62,9 @@
 
 <script setup lang="ts">
 import SearchTop from "@/components/search/SearchTop.vue";
+import IconPlace from "@/components/icons/IconPlace.vue";
+import IconSend from "@/components/icons/IconSend.vue";
+import { RouterLink } from "vue-router";
 </script>
 
 <style scoped lang="scss">
@@ -44,26 +72,100 @@ import SearchTop from "@/components/search/SearchTop.vue";
   display: flex;
   flex-direction: row;
   gap: 40px;
-  .description{
+  .description {
     flex: 2;
+    .company,
+    .infos span {
+      font-size: $font-m;
+    }
+    .infos span {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h1 {
+      margin: 8px 0;
+      font-size: $font-xl;
+    }
+    .tags {
+      display: flex;
+      gap: 10px;
+      flex-direction: row;
+      margin-top: 28px;
+    }
+    .description-text {
+      margin-top: 20px;
+      h2 {
+        margin: 0;
+        font-size: $font-m;
+        font-weight: 800;
+      }
+      p {
+        margin-top: 0;
+        font-size: $font-m;
+      }
+    }
   }
-  .other-details{
+  .other-details {
     flex: 1;
+    .card-job-infos {
+      .company {
+        font-size: $font-m;
+        font-weight: 400;
+        display: block;
+      }
+      .job-title {
+        font-size: $font-l;
+        font-weight: 800;
+        display: block;
+        margin: 8px 0;
+      }
+      .salary {
+        font-size: $font-m;
+        font-weight: 600;
+        display: block;
+        b {
+          font-size: $font-xl;
+          color: white;
+        }
+      }
+      .tags {
+        margin: 28px 0;
+        display: flex;
+        gap: 10px;
+        .tag {
+          border-color: white;
+        }
+      }
+    }
+    .card-company-infos {
+      .company {
+        font-size: $font-l;
+        font-weight: 800;
+        display: block;
+      }
+    }
+    .btn--primary {
+      width: 100%;
+    }
   }
 
-  .card-job-infos{
+  .card-job-infos {
     background-color: $color-primary;
     color: white;
     padding: 20px;
     border-radius: 24px;
     margin-bottom: 20px;
   }
-    .card-company-infos{
-        background-color: white;
-        color: $color-font-primary;
-        padding: 20px;
-        border: 2px solid $color-font-primary;
-        border-radius: 24px;
-    }
+  .card-company-infos {
+    background-color: white;
+    color: $color-font-primary;
+    padding: 20px;
+    border: 2px solid $color-font-primary;
+    border-radius: 24px;
+  }
+}
+.btn-container{
+  display: flex;
 }
 </style>

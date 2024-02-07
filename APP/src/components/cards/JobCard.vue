@@ -64,12 +64,6 @@ import { RouterLink } from "vue-router";
       flex-direction: row;
       flex-wrap: wrap;
       margin: 10px 0;
-      .tag{
-        padding: 4px 8px;
-        border-radius: 24px;
-        border: 2px solid $color-font-primary;
-        font-size: $font-m;
-      }
     }
   }
   .card__footer {

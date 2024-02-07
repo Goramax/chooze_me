@@ -36,6 +36,13 @@
       color: $color-font-primary;
       border-color: $color-font-primary;
     }
+    &.inverted {
+      background-color: white;
+      color: $color-font-primary;
+      &::after {
+        background-color: white;
+      }
+    }
   }
   &--secondary {
     @extend .btn;
@@ -54,7 +61,7 @@
   }
 }
 
-.circle-icon{
+.circle-icon {
   border: $border-secondary;
   border-width: 2px;
   border-radius: 100%;
@@ -68,14 +75,23 @@
   align-items: center;
 }
 
-:deep(.favorite-btn){
+:deep(.favorite-btn) {
   padding: 18px;
-  &:hover{
-    svg{
-      path{
+  &:hover {
+    svg {
+      path {
         stroke: $color-primary;
         fill: $color-primary;
       }
     }
+  }
+}
+
+.tags {
+  .tag {
+    padding: 4px 8px;
+    border-radius: 24px;
+    border: 2px solid $color-font-primary;
+    font-size: $font-m;
   }
 }

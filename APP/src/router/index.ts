@@ -33,6 +33,11 @@ const router = createRouter({
       component: () => import('../views/LegalAssistView.vue')
     },
     {
+      path: '/aide-juridique/:id',
+      name: 'legal-help-detail',
+      component: () => import('../views/LegalAssistDetailsView.vue')
+    },
+    {
       path: '/messages',
       name: 'messages',
       component: () => import('../views/MessagesView.vue')

@@ -27,13 +27,15 @@ import Filters from "@/components/search/Filters.vue";
 import JobCard from "@/components/cards/JobCard.vue";
 import { onMounted, ref } from "vue";
 
+defineOptions({
+  inheritAttrs: false,
+});
+
 let resCount = ref(0);
 let jobAds = ref([]) as any;
 
 // Mock data
 onMounted(() => {
-  console.log("mounted");
-  resCount.value = 3;
   jobAds = [
     {
       id: 1,
@@ -63,6 +65,7 @@ onMounted(() => {
       tags: ["React", "Node.js", "TypeScript"],
     },
   ];
+  resCount.value = jobAds.length;
 });
 </script>
 

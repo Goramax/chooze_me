@@ -72,6 +72,9 @@ import { RouterLink } from "vue-router";
   display: flex;
   flex-direction: row;
   gap: 40px;
+  @media (max-width: 1240px) {
+    flex-direction: column;
+  }
   .description {
     flex: 2;
     .company,
@@ -86,6 +89,9 @@ import { RouterLink } from "vue-router";
     h1 {
       margin: 8px 0;
       font-size: $font-xl;
+      @media (max-width: 768px){
+        font-size: $font-lp;
+      }
     }
     .tags {
       display: flex;
@@ -165,7 +171,7 @@ import { RouterLink } from "vue-router";
     border-radius: 24px;
   }
 }
-.btn-container{
+.btn-container {
   display: flex;
 }
 </style>

@@ -24,6 +24,11 @@ import IconMap from "./components/icons/IconMap.vue";
           >Inscription</RouterLink
         >
         <RouterLink to="/connexion" class="btn--primary">Connexion</RouterLink>
+        <div class="burger">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </div>
       </div>
     </div>
   </header>
@@ -80,6 +85,34 @@ header {
           }
         }
       }
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+    .right {
+      a {
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      .burger {
+        display: none;
+        @media (max-width: 768px) {
+          display: inline-block;
+          position: relative;
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          .burger__line {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: $color-font-primary;
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
     }
     .middle {
       display: flex;
@@ -95,6 +128,9 @@ header {
           max-width: 100%;
           stroke: $color-font-primary;
         }
+      }
+      @media (max-width: 768px) {
+        display: none;
       }
     }
   }

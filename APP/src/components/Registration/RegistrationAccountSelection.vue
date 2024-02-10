@@ -41,8 +41,7 @@
   height: 100%;
   z-index: 2;
   @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
+    display: block;
   }
 }
 .new-user,
@@ -55,21 +54,38 @@
   flex: 1;
   min-height: 100%;
   height: 100%;
+  @media (max-width: 768px){
+    min-height: 50%;
+    height: auto;
+    padding: 20px;
+  }
   h2 {
     font-size: $font-m;
     text-transform: uppercase;
     font-weight: 600;
+    margin-left: 20px;
+    margin-right: 20px;
+    @media (max-width: 768px) {
+      font-size: $font-s;
+    }
   }
   .big-text {
     font-size: $font-xxl;
     text-align: center;
     font-weight: 900;
+    margin-left: 20px;
+    margin-right: 20px;
+    @media (max-width: 768px) {
+      font-size: $font-lp;
+    }
   }
   .sub-text {
-    font-size: 1rem;
+    font-size: $font-m;
     text-align: center;
     margin-top: 10px;
     margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
   }
   button {
     margin-top: 20px;

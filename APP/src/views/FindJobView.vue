@@ -99,19 +99,35 @@ main {
   background-color: white;
   border-right: 1px solid rgba($color-grey-light, 0.4);
   padding: 20px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 .jobs-ads-container {
   padding: 20px 40px;
   width: 100%;
+  @media (max-width: 768px) {
+    padding: 40px 10px;
+  }
   .top {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
     align-items: center;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     h2 {
       margin: 0;
       font-size: $font-xl;
+      @media (max-width: 768px) {
+        margin-bottom: 20px;
+        font-size: $font-lp;
+        text-align: center;
+        width: 100%;
+      }
     }
   }
   .jobs-ads {
@@ -120,6 +136,12 @@ main {
     grid-template-rows: 1fr;
     grid-column-gap: 2vw;
     grid-row-gap: 2vw;
+    @media (max-width: 1360px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media (max-width: 920px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 }
 </style>

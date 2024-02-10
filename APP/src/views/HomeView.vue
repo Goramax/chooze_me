@@ -24,6 +24,9 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media (max-width: 768px){
+    padding-top: 40px;
+  }
   h1 {
     b {
       color: $color-primary;
@@ -31,7 +34,11 @@ main {
     text-align: center;
     font-weight: 900;
     font-size: $font-xxxl;
+    padding: 0 20px;
     margin: 0;
+    @media (max-width: 768px) {
+      font-size: $font-lp;
+    }
   }
   .home-top-text {
     text-align: center;
@@ -39,6 +46,7 @@ main {
     color: $color-primary;
     font-weight: 700;
     text-transform: uppercase;
+    padding: 0 20px;
   }
   .home-subtext {
     text-align: center;
@@ -46,6 +54,7 @@ main {
     color: $color-font-primary;
     font-weight: 400;
     margin-top: 20px;
+    padding: 0 20px;
   }
 }
 .squares-container {
@@ -75,6 +84,9 @@ main {
         transform: rotate(-20deg);
         animation: floating2 6s ease-in-out infinite;
       }
+    }
+    @media (max-width: 768px) {
+      display: none;
     }
   }
 </style>

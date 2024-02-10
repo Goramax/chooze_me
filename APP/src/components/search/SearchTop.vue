@@ -45,6 +45,9 @@ import IconSearch from "../icons/IconSearch.vue";
 .main-search-container {
   padding: 20px 40px;
   border-bottom: 1px solid $color-grey-light;
+  @media (max-width: 768px) {
+    display: none;
+  }
   .search-container {
     display: flex;
     justify-content: space-between;

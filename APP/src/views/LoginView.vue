@@ -27,6 +27,9 @@ h1 {
   font-weight: 900;
   text-align: center;
   font-size: $font-xxl;
+  @media (max-width: 768px) {
+    font-size: $font-lp;
+  }
 }
 main {
   display: flex;

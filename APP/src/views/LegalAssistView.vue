@@ -9,7 +9,9 @@
             placeholder="Rechercher une question, un article de loi, un thème..."
           />
         </div>
-        <button type="submit">Rechercher<IconSearch /></button>
+        <button type="submit">
+          <span class="btn-txt">Rechercher</span><IconSearch />
+        </button>
       </form>
       <div class="legal-assist-results-container">
         <h2>Les questions les plus posées</h2>
@@ -36,6 +38,11 @@ h1 {
   font-size: $font-xxl;
   margin-bottom: 40px;
   margin-top: 80px;
+  @media (max-width: 768px) {
+    font-size: $font-lp;
+    margin-bottom: 20px;
+    margin-top: 40px;
+  }
 }
 .search-form {
   display: flex;
@@ -55,6 +62,11 @@ h1 {
     svg {
       max-height: 20px;
     }
+    @media (max-width: 768px) {
+      .btn-txt {
+        display: none;
+      }
+    }
   }
 }
 .legal-assist-results-container {
@@ -62,6 +74,9 @@ h1 {
   h2 {
     font-size: $font-lp;
     font-weight: 800;
+    @media (max-width: 768px) {
+      font-size: $font-l;
+    }
   }
   .card-grid {
     position: relative;
@@ -71,6 +86,9 @@ h1 {
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     margin-top: 20px;
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
   }
 }
 </style>

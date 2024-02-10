@@ -47,11 +47,15 @@ h1 {
   margin: 8px 0;
   font-size: $font-xl;
   font-weight: 800;
+  @media (max-width: 768px){
+    font-size: $font-lp;
+  }
 }
 .infos {
   display: flex;
   gap: 20px;
   margin: 20px 0;
+  flex-wrap: wrap;
   span {
     display: flex;
     align-items: center;
@@ -63,6 +67,7 @@ h1 {
   gap: 10px;
   flex-direction: row;
   margin-top: 28px;
+  flex-wrap: wrap;
 }
 
 .offers-container{
@@ -73,6 +78,10 @@ h1 {
     width: 100%;
     margin-bottom: 20px;
     align-items: center;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
     h2 {
       margin: 0;
       font-size: $font-xl;

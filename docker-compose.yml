@@ -47,10 +47,13 @@ services:
     container_name: choozeme_front
     restart: unless-stopped
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.app.rule=Host(`app.choozeme.local`)
-      - traefik.http.routers.app.entrypoints=web
-      - traefik.http.services.app.loadbalancer.server.port=80
+      - "traefik.enable=true"
+      - "traefik.http.routers.choozemeapp.rule=Host(`choozeme.maxime-malherbe.fr`)"
+      - "traefik.http.routers.apchoozemeappp.entrypoints=websecure"
+      - "traefik.http.routers.choozemeapp.tls=true"
+      - "traefik.http.routers.choozemeapp.tls.certresolver=myresolver"
+    networks:
+      - traefiknet
 
   # traefik:
   #   image: traefik:v2.2

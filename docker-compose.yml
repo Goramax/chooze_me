@@ -5,28 +5,28 @@ services:
   #   image: 'choozeme/api:latest'
   #   build: './api'
 
-  db:
-    image: mysql:8.1.0
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: choozeme
-      MYSQL_USER: choozeme
-      MYSQL_PASSWORD: Ch00z3m3
-    ports:
-      - '3306:3306'
-    volumes:
-      - ./volumes/db:/var/lib/mysql
+  # db:
+  #   image: mysql:8.1.0
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: choozeme
+  #     MYSQL_USER: choozeme
+  #     MYSQL_PASSWORD: Ch00z3m3
+  #   ports:
+  #     - '3306:3306'
+  #   volumes:
+  #     - ./volumes/db:/var/lib/mysql
   
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: root
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.phpmyadmin.entrypoints=phpmyadmin
-      - traefik.http.routers.app.rule=Host(`localhost`)
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     PMA_HOST: db
+  #     PMA_PORT: 3306
+  #     MYSQL_ROOT_PASSWORD: root
+  #   labels:
+  #     - traefik.enable=true
+  #     - traefik.http.routers.phpmyadmin.entrypoints=phpmyadmin
+  #     - traefik.http.routers.app.rule=Host(`localhost`)
 
   # app:
   #   image: 'choozeme/app:latest'
@@ -41,22 +41,27 @@ services:
   #     - traefik.http.routers.app.entrypoints=web
   #     - traefik.http.services.app.loadbalancer.server.port=80
   
-  # admin:
-  #   image: 'choozeme/admin:latest'
-  #   build: './ADMIN'
-  #   ports:
-  #     - '3000:3000'
-  #   volumes:
-  #     - ./ADMIN:/app
-  #   depends_on:
-  #     - api
+  front:
+    image: 'choozeme/app:latest'
+    build: ./APP
+    container_name: choozeme_front
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app.rule=Host(`app.choozeme.local`)
+      - traefik.http.routers.app.entrypoints=web
+      - traefik.http.services.app.loadbalancer.server.port=80
 
-  traefik:
-    image: traefik:v2.2
-    command: --api.insecure=true --providers.docker --providers.docker.exposedbydefault=false --entrypoints.phpmyadmin.address=:8081
-    ports:
-      - '80:80'
-      - '8080:8080'
-      - '8081:8081'
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+  # traefik:
+  #   image: traefik:v2.2
+  #   command: --api.insecure=true --providers.docker --providers.docker.exposedbydefault=false --entrypoints.phpmyadmin.address=:8081
+  #   ports:
+  #     - '80:80'
+  #     - '8080:8080'
+  #     - '8081:8081'
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+
+networks:
+  traefiknet:
+    external: true

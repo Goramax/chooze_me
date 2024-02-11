@@ -1,6 +1,18 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
+import { RouterLink, RouterView, onBeforeRouteUpdate } from "vue-router";
+import { ref } from "vue";
 import IconMap from "./components/icons/IconMap.vue";
+
+function getScreenWidth() {
+  if (window.innerWidth > 768) {
+    return "desktop";
+  } else {
+    return "mobile";
+  }
+}
+
+let showMobileMenu = ref(false);
+
 </script>
 
 <template>
@@ -10,27 +22,62 @@ import IconMap from "./components/icons/IconMap.vue";
         <RouterLink to="/" class="logo">
           <img alt="Logo ChoozeMe" src="./assets/imgs/logo.png" />
         </RouterLink>
-        <div class="menu">
+        <div class="menu" v-if="getScreenWidth() === 'desktop'">
           <RouterLink to="/trouver-un-job">Trouver mon job</RouterLink>
           <RouterLink to="/messages">Messages</RouterLink>
           <RouterLink to="/aide-juridique">Assistance Juridique</RouterLink>
         </div>
       </div>
-      <div class="middle">
+      <div class="middle" v-if="getScreenWidth() === 'desktop'">
         <span class="icon"><IconMap /></span><span>Caen</span>
       </div>
       <div class="right">
-        <RouterLink to="/inscription" class="btn--secondary"
+        <RouterLink
+          to="/inscription"
+          class="btn--secondary"
+          v-if="getScreenWidth() === 'desktop'"
           >Inscription</RouterLink
         >
-        <RouterLink to="/connexion" class="btn--primary">Connexion</RouterLink>
-        <div class="burger">
+        <RouterLink
+          to="/connexion"
+          class="btn--primary"
+          v-if="getScreenWidth() === 'desktop'"
+          >Connexion</RouterLink
+        >
+        <div
+          class="burger"
+          v-if="getScreenWidth() === 'mobile'"
+          @click="showMobileMenu = !showMobileMenu"
+        >
           <span class="burger__line"></span>
           <span class="burger__line"></span>
           <span class="burger__line"></span>
         </div>
       </div>
     </div>
+    <Transition name="swipe">
+      <div
+        class="mobile-menu"
+        v-if="getScreenWidth() === 'mobile'"
+        v-show="showMobileMenu"
+      >
+        <span class="close" @click="showMobileMenu = false"> X </span>
+        <div class="mobile-top-menu">
+          <RouterLink to="/" @click="showMobileMenu = false">Accueil</RouterLink>
+          <RouterLink to="/trouver-un-job" @click="showMobileMenu = false">Trouver mon job</RouterLink>
+          <RouterLink to="/messages" @click="showMobileMenu = false">Messages</RouterLink>
+          <RouterLink to="/aide-juridique" @click="showMobileMenu = false">Assistance Juridique</RouterLink>
+        </div>
+        <div class="mobile-bottom-menu">
+          <RouterLink to="/inscription" class="btn--primary" @click="showMobileMenu = false"
+            >Inscription</RouterLink
+          >
+          <RouterLink to="/connexion" class="btn--primary inverted" @click="showMobileMenu = false"
+            >Connexion</RouterLink
+          >
+        </div>
+      </div>
+    </Transition>
   </header>
   <RouterView />
 
@@ -85,19 +132,19 @@ header {
           }
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: $media-md) {
         display: none;
       }
     }
     .right {
       a {
-        @media (max-width: 768px) {
+        @media (max-width: $media-md) {
           display: none;
         }
       }
       .burger {
         display: none;
-        @media (max-width: 768px) {
+        @media (max-width: $media-md) {
           display: inline-block;
           position: relative;
           width: 30px;
@@ -129,10 +176,82 @@ header {
           stroke: $color-font-primary;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: $media-md) {
         display: none;
       }
     }
   }
+}
+.mobile-menu {
+  @media (min-width: $media-md) {
+    display: none;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  background-color: $color-primary;
+  color: white;
+  z-index: 10;
+  gap: 40px;
+
+  .close {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: $font-lp;
+    font-weight: 800;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+  }
+
+  .mobile-top-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 20px;
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: $font-lp;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+      font-weight: 800;
+    }
+  }
+  .mobile-bottom-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    .btn--primary:not(.inverted) {
+      border: 1px solid white;
+    }
+  }
+  & > div {
+    padding: 20px;
+  }
+}
+.swipe-enter-active,
+.swipe-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+.swipe-enter-from,
+.swipe-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.swipe-enter-to,
+.swipe-leave-from {
+  opacity: 1;
+  transform: translateY(0);
 }
 </style>

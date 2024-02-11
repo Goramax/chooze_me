@@ -47,7 +47,7 @@ import IconSearch from "../icons/IconSearch.vue";
   display: flex;
   justify-content: center;
   width: 100%;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     margin: 0 20px;
     width: auto;
   }
@@ -62,7 +62,7 @@ import IconSearch from "../icons/IconSearch.vue";
     width: 70%;
     gap: 60px;
 
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       width: 100%;
       border: none !important;
     }
@@ -77,7 +77,7 @@ import IconSearch from "../icons/IconSearch.vue";
         gap: 10px;
         flex: 1;
       }
-      @media (max-width: 768px) {
+      @media (max-width: $media-md) {
         width: 100%;
       }
     }
@@ -99,7 +99,7 @@ import IconSearch from "../icons/IconSearch.vue";
       }
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     .search-container {
       flex-direction: column;
       gap: 20px;

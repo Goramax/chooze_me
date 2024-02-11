@@ -89,7 +89,7 @@ import { RouterLink } from "vue-router";
     h1 {
       margin: 8px 0;
       font-size: $font-xl;
-      @media (max-width: 768px){
+      @media (max-width: $media-md){
         font-size: $font-lp;
       }
     }

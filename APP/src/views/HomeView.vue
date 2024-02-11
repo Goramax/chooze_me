@@ -24,7 +24,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  @media (max-width: 768px){
+  @media (max-width: $media-md){
     padding-top: 40px;
   }
   h1 {
@@ -36,7 +36,7 @@ main {
     font-size: $font-xxxl;
     padding: 0 20px;
     margin: 0;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       font-size: $font-lp;
     }
   }
@@ -85,7 +85,7 @@ main {
         animation: floating2 6s ease-in-out infinite;
       }
     }
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       display: none;
     }
   }

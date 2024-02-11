@@ -40,7 +40,7 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     display: block;
   }
 }
@@ -54,7 +54,7 @@
   flex: 1;
   min-height: 100%;
   height: 100%;
-  @media (max-width: 768px){
+  @media (max-width: $media-md){
     min-height: 50%;
     height: auto;
     padding: 20px;
@@ -65,7 +65,7 @@
     font-weight: 600;
     margin-left: 20px;
     margin-right: 20px;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       font-size: $font-s;
     }
   }
@@ -75,7 +75,7 @@
     font-weight: 900;
     margin-left: 20px;
     margin-right: 20px;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       font-size: $font-lp;
     }
   }
@@ -94,7 +94,7 @@
 .new-user {
   background-color: $color-primary;
   color: white;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     margin-bottom: 20px;
   }
 }

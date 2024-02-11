@@ -38,7 +38,7 @@ h1 {
   font-size: $font-xxl;
   margin-bottom: 40px;
   margin-top: 80px;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     font-size: $font-lp;
     margin-bottom: 20px;
     margin-top: 40px;
@@ -62,7 +62,7 @@ h1 {
     svg {
       max-height: 20px;
     }
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       .btn-txt {
         display: none;
       }
@@ -74,7 +74,7 @@ h1 {
   h2 {
     font-size: $font-lp;
     font-weight: 800;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       font-size: $font-l;
     }
   }
@@ -86,7 +86,7 @@ h1 {
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     margin-top: 20px;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       grid-template-columns: 1fr;
     }
   }

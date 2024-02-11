@@ -111,7 +111,7 @@ main {
   background-color: white;
   border-right: 1px solid rgba($color-grey-light, 0.4);
   padding: 0 20px 0 20px;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     width: 100%;
   }
 
@@ -170,7 +170,7 @@ main {
       color: $color-font-primary;
     }
   }
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     padding: 0 20px 0 20px;
   }
   .message-line {
@@ -196,7 +196,7 @@ main {
 .message-input {
   gap: 20px;
   padding: 20px;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     padding: 20px 0;
   }
   form {
@@ -223,7 +223,7 @@ main {
           stroke: white;
         }
       }
-      @media (max-width: 768px) {
+      @media (max-width: $media-md) {
         padding-left: 20px;
         padding-right: 20px;
       }
@@ -257,13 +257,13 @@ main {
       }
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: $media-md) {
     display: none;
   }
 }
 
 .mobile-hidden {
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     display: none;
   }
 }

@@ -43,7 +43,7 @@ h1 {
   font-weight: 800;
   font-size: $font-xl;
   margin: 0;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     font-size: $font-lp;
   }
 }

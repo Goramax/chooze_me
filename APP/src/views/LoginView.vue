@@ -27,7 +27,7 @@ h1 {
   font-weight: 900;
   text-align: center;
   font-size: $font-xxl;
-  @media (max-width: 768px) {
+  @media (max-width: $media-md) {
     font-size: $font-lp;
   }
 }

@@ -87,6 +87,12 @@ input{
 
 .form-container-base {
   margin: 0 auto;
+
+  @media (max-width: $media-md) {
+    margin: 0;
+    padding: 0 20px;
+  }
+
   @media (min-width: $media-md) {
     width: 400px;
   }

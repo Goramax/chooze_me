@@ -47,7 +47,7 @@ h1 {
   margin: 8px 0;
   font-size: $font-xl;
   font-weight: 800;
-  @media (max-width: 768px){
+  @media (max-width: $media-md){
     font-size: $font-lp;
   }
 }
@@ -78,7 +78,7 @@ h1 {
     width: 100%;
     margin-bottom: 20px;
     align-items: center;
-    @media (max-width: 768px) {
+    @media (max-width: $media-md) {
       flex-direction: column;
       align-items: flex-start;
     }

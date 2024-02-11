@@ -11,7 +11,16 @@
         <label for="activity">Secteur d'activité*</label>
         <select name="activity" id="activity">
           <!-- CHARGER LES DONNEES VIA API -->
-          <option value="" disabled selected>Chargement..</option>
+          <option value="" disabled selected v-if="!activitySectors.length">
+            Chargement...
+          </option>
+          <option
+            v-for="sector in activitySectors"
+            :key="sector"
+            :value="sector"
+          >
+            {{ sector }}
+          </option>
         </select>
       </div>
       <div class="form-group">
@@ -83,6 +92,9 @@ import StepDisplay from "@/components/Registration/StepDisplay.vue";
 import { onMounted, ref } from "vue";
 let step = ref(1);
 let maxStep = ref(step.value);
+
+let activitySectors = ref([]) as any;
+
 function getDate() {
   const date = new Date();
   const year = date.getFullYear() - 16;
@@ -107,6 +119,58 @@ onMounted(() => {
     maxStepTmp++;
   });
   maxStep.value = maxStepTmp;
+
+  // Fetch activity sectors
+  activitySectors.value = [
+    "Informatique",
+    "Artisanat",
+    "Assurance",
+    "Banque",
+    "Bâtiment",
+    "Biotechnologie",
+    "Chimie",
+    "Commerce",
+    "Communication",
+    "Comptabilité",
+    "Culture",
+    "Défense",
+    "Droit",
+    "E-commerce",
+    "Economie",
+    "Education",
+    "Energie",
+    "Environnement",
+    "Finance",
+    "Formation",
+    "Gestion",
+    "Hôtellerie",
+    "Immobilier",
+    "Industrie",
+    "Informatique",
+    "Ingénierie",
+    "Internet",
+    "Journalisme",
+    "Logistique",
+    "Marketing",
+    "Média",
+    "Mode",
+    "Musique",
+    "Pharmacie",
+    "Publicité",
+    "Restauration",
+    "Ressources humaines",
+    "Santé",
+    "Sécurité",
+    "Service",
+    "Sport",
+    "Télécommunication",
+    "Tourisme",
+    "Transport",
+    "Agriculture",
+    "Agroalimentaire",
+    "Architecture",
+    "Urbanisme",
+  ];
 });
 </script>
 

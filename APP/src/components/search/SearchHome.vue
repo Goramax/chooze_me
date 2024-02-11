@@ -7,8 +7,13 @@ import IconPerson from '../icons/IconPerson.vue';
           <span class="circle-icon">
             <IconPerson />
           </span>
-          <select name="job" id="job-search">
-            <option value="uxui">Designer UI/UX</option>
+          <select name="job" id="job-search" v-model="params.job">
+            <option value="" disabled selected v-if="!jobs.length">
+              Chargement...
+            </option>
+            <option v-for="j in jobs" :key="j.id" :value="j.id">
+              {{ j.name }}
+            </option>
           </select>
         </span>
         <span class="select-search">
@@ -23,13 +28,18 @@ import IconPerson from '../icons/IconPerson.vue';
           <span class="circle-icon">
             <IconBook />
           </span>
-          <select name="diploma" id="diploma-search">
-            <option value="bac">Bac+5</option>
+          <select name="diploma" id="diploma-search" v-model="params.diploma">
+            <option value="" disabled selected v-if="!diplomas.length">
+              Chargement...
+            </option>
+            <option v-for="d in diplomas" :key="d.id" :value="d.id">
+              {{ d.name }}
+            </option>
           </select>
         </span>
       </div>
       <div class="__right">
-        <span class="btn--primary search-btn">Chercher<IconSearch /></span>
+        <span class="btn--primary search-btn" @click="search">Chercher<IconSearch /></span>
       </div>
     </form>
   </div>
@@ -40,6 +50,89 @@ import IconPerson from "../icons/IconPerson.vue";
 import IconPlace from "../icons/IconPlace.vue";
 import IconBook from "../icons/IconBook.vue";
 import IconSearch from "../icons/IconSearch.vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
+
+let jobs = ref([]) as any;
+let diplomas = ref([]) as any;
+
+let params = {
+  job: 0,
+  location: "caen",
+  diploma: 0,
+};
+
+const router = useRouter();
+
+function search() {
+  router.push({
+    name: "find-job",
+    query: {
+      job: params.job,
+      location: params.location,
+      diploma: params.diploma,
+    },
+  });
+
+}
+
+onMounted(() => {
+let responseJobs = [
+    {
+      id: 1,
+      name: "Manager de projet",
+    },
+    {
+      id: 2,
+      name: "Développeur Frontend",
+    },
+    {
+      id: 3,
+      name: "Développeur Backend",
+    },
+    {
+      id: 4,
+      name: "Développeur Fullstack",
+    },
+    {
+      id: 5,
+      name: "Community Manager",
+    },
+    {
+      id: 6,
+      name: "Designer UI/UX",
+    },
+  ];
+let responseDiplomas = [
+    {
+      id: 1,
+      name: "Bac +5",
+    },
+    {
+      id: 2,
+      name: "Bac +4",
+    },
+    {
+      id: 3,
+      name: "Bac +3",
+    },
+    {
+      id: 4,
+      name: "Bac +2",
+    },
+    {
+      id: 6,
+      name: "Baccalauréat",
+    }
+  ];
+  jobs.value = responseJobs;
+  diplomas.value = responseDiplomas;
+
+  params.job = responseJobs[0].id;
+  params.diploma = responseDiplomas[0].id;
+});
+
+
 </script>
 
 <style scoped lang="scss">

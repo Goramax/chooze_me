@@ -38,6 +38,19 @@ form {
         background-color: transparent;
       }
     }
+    select {
+      border: $border-primary;
+      border-radius: $border-radius-primary;
+      padding: 15px;
+      width: 100%;
+      max-width: 100%;
+      background-color: transparent;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+        no-repeat right 15px top 50%;
+    }
   }
   button {
     &[type="submit"] {
@@ -58,7 +71,7 @@ form {
   }
 }
 
-input{
+input {
   &[type="checkbox"] {
     width: 18px;
     height: 18px;
@@ -106,8 +119,9 @@ input{
     background-color: white;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat right 15px top 50%;
-    &:focus{
+    background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+      no-repeat right 15px top 50%;
+    &:focus {
       outline: $border-secondary;
       border-radius: 20px;
     }

@@ -21,7 +21,19 @@
   </main>
 </template>
 
-<script setup lang="ts">
+<script setup lang="js">
+
+let resCount = ref(0);
+let jobAds = ref([]);
+
+import { supabase } from "../lib/supabaseClient";
+
+async function getJobAds() {
+  const { data } = await supabase.from("companies").select();
+  jobAds.value = data;
+  console.log(data);
+}
+
 import SearchTop from "@/components/search/SearchTop.vue";
 import Filters from "@/components/search/Filters.vue";
 import JobCard from "@/components/cards/JobCard.vue";
@@ -31,11 +43,8 @@ defineOptions({
   inheritAttrs: false,
 });
 
-let resCount = ref(0);
-let jobAds = ref([]) as any;
-
-// Mock data
 onMounted(() => {
+  getJobAds();
   jobAds = [
     {
       id: 1,

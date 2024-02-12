@@ -2,11 +2,11 @@
   <main>
     <SearchTop />
     <div class="content-container">
-      <span class="sector">Éducation</span>
-      <h1>MyDigitalSchool</h1>
+      <span class="sector">{{ company?.sector }}</span>
+      <h1>{{ company?.name }}</h1>
       <div class="infos">
-        <span class="location"><IconPlace />Caen</span>
-        <span class="employees"><IconPeople />150 employés</span>
+        <span class="location"><IconPlace />{{ company?.location }}</span>
+        <span class="employees"><IconPeople />{{ company?.employees }} employés</span>
         <span class="offers"><IconGraph />13 offres d'emploi</span>
       </div>
       <div class="tags">
@@ -15,10 +15,7 @@
       </div>
       <div class="description">
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          {{ company?.description }}
         </p>
       </div>
       <div class="offers-container">
@@ -40,6 +37,22 @@ import SearchTop from "@/components/search/SearchTop.vue";
 import IconPlace from "@/components/icons/IconPlace.vue";
 import IconPeople from "@/components/icons/IconPeople.vue";
 import IconGraph from "@/components/icons/IconGraph.vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient"
+import { type Company } from "@/types/Company.vue";
+import { onMounted, ref } from "vue";
+
+let company = ref<Company | null>(null);
+
+async function getCompany() {
+  const { data } = await supabase.from("companies").select();
+  company.value = data[0];
+}
+
+onMounted(() => {
+  getCompany();
+});
+
 </script>
 
 <style scoped lang="scss">
@@ -47,7 +60,7 @@ h1 {
   margin: 8px 0;
   font-size: $font-xl;
   font-weight: 800;
-  @media (max-width: $media-md){
+  @media (max-width: $media-md) {
     font-size: $font-lp;
   }
 }
@@ -70,7 +83,7 @@ h1 {
   flex-wrap: wrap;
 }
 
-.offers-container{
+.offers-container {
   margin-top: 60px;
   .top {
     display: flex;

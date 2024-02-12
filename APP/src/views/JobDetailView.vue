@@ -4,10 +4,10 @@
     <div class="content-container">
       <div class="main-grid">
         <div class="description">
-          <span class="company">MyDigitalSchool</span>
-          <h1>Développeur Web</h1>
+          <span class="company">{{ company?.name }}</span>
+          <h1>{{ jobAd?.job_title }}</h1>
           <div class="infos">
-            <span class="location"><IconPlace />Caen</span>
+            <span class="location"><IconPlace />{{ jobAd?.location }}</span>
             <!-- <span class="published-date">Publiée il y a 3 jours</span> -->
           </div>
           <div class="tags">
@@ -18,19 +18,16 @@
             <!-- WYSIWYG -->
             <h2>Intitulé de la mission</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {{ jobAd?.description }}
             </p>
             <!-- End WYSIWYG -->
           </div>
         </div>
         <div class="other-details">
           <div class="card-job-infos">
-            <span class="company">MyDigitalSchool</span>
-            <span class="job-title">Développeur Web</span>
-            <span class="salary"><b>2400€</b> / mois</span>
+            <span class="company">{{ company?.name }}</span>
+            <span class="job-title">{{ jobAd?.job_title }}</span>
+            <span class="salary"><b>{{ jobAd?.salary }} €</b> / mois</span>
             <div class="tags">
               <span class="tag">Contrat en apprentissage</span>
               <span class="tag">CDD</span>
@@ -40,16 +37,13 @@
             </button>
           </div>
           <div class="card-company-infos">
-            <span class="sector">Éducation</span>
-            <span class="company">MyDigitalSchool</span>
+            <span class="sector">{{ company?.sector }}</span>
+            <span class="company">{{ company?.name }}</span>
             <p class="short-desc">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
+              {{ company?.description }}
             </p>
             <div class="btn-container">
-              <RouterLink to="/entreprise/1" class="btn--primary"
+              <RouterLink :to="'/entreprise/'+ company?.id" class="btn--primary"
                 >Découvrir l'entreprise</RouterLink
               >
             </div>
@@ -65,6 +59,33 @@ import SearchTop from "@/components/search/SearchTop.vue";
 import IconPlace from "@/components/icons/IconPlace.vue";
 import IconSend from "@/components/icons/IconSend.vue";
 import { RouterLink } from "vue-router";
+import { ref, onMounted } from "vue";
+import { type JobAd } from "@/types/JobAd.vue";
+import { type Company } from "@/types/Company.vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient"
+import { useRoute } from "vue-router";
+
+let jobAd = ref<JobAd | null>(null);
+let company = ref<Company | null>(null);
+let jobAdId = useRoute().params.id;
+
+async function getJobAd() {
+  const { data } = await supabase.from("job_ads").select().eq("id", jobAdId);
+  jobAd.value = data[0];
+}
+
+async function getCompany() {
+  const { data } = await supabase.from("companies").select().eq("id", jobAd.value?.company);
+  company.value = data[0];
+}
+
+onMounted(() => {
+  getJobAd().then(() => {
+    getCompany();
+  });
+});
+
 </script>
 
 <style scoped lang="scss">

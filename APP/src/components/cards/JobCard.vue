@@ -5,7 +5,7 @@
     </div>
     <div class="card__body">
       <div class="body__content">
-        <span class="company">{{ company!.name }}</span>
+        <span class="company">{{ company?.name }}</span>
         <h3 class="job-title">{{ jobAd.job_title }}</h3>
         <div class="tags">
           <!-- v-for -->

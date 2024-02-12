@@ -5,8 +5,8 @@
     </div>
     <div class="card__body">
       <div class="body__content">
-        <span class="company">MyDigitalSchool</span>
-        <h3 class="job-title">Développeur Web</h3>
+        <span class="company">{{ company!.name }}</span>
+        <h3 class="job-title">{{ jobAd.job_title }}</h3>
         <div class="tags">
           <!-- v-for -->
           <span class="tag">Contrat en apprentissage</span>
@@ -16,11 +16,13 @@
           <div class="infos">
             <span class="salary"
               >salaire <br />
-              <span class="amount">1800€ / mois</span></span
+              <span class="amount">{{ jobAd.salary }} €</span></span
             >
-            <span class="location">Caen</span>
+            <span class="location">{{ jobAd.location }}</span>
           </div>
-          <RouterLink to="/annonce/1" class="btn--primary">Découvrir</RouterLink>
+          <RouterLink to="/annonce/1" class="btn--primary"
+            >Découvrir</RouterLink
+          >
         </div>
       </div>
     </div>
@@ -30,6 +32,23 @@
 <script setup lang="ts">
 import IconHeart from "@/components/icons/IconHeart.vue";
 import { RouterLink } from "vue-router";
+import { ref } from "vue";
+import { type JobAd } from "@/types/JobAd.vue";
+import { type Company } from "@/types/Company.vue";
+import { onMounted, defineProps } from "vue";
+
+const props = defineProps({
+  jobAd: {
+    type: Object as () => JobAd,
+    required: true,
+  },
+  company: {
+    type: Object as () => Company,
+    required: false,
+  },
+});
+
+
 </script>
 
 <style scoped lang="scss">
@@ -50,15 +69,15 @@ import { RouterLink } from "vue-router";
     flex-direction: column;
     justify-content: end;
     flex: 1;
-    h3{
-        margin: 4px 0;
-        font-size: $font-l;
-        font-weight: 800;
+    h3 {
+      margin: 4px 0;
+      font-size: $font-l;
+      font-weight: 800;
     }
-    .company{
-        font-size: $font-m;
+    .company {
+      font-size: $font-m;
     }
-    .tags{
+    .tags {
       display: flex;
       gap: 10px;
       flex-direction: row;
@@ -86,3 +105,4 @@ import { RouterLink } from "vue-router";
   }
 }
 </style>
+@/types/jobAd

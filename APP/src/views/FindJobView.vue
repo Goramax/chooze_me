@@ -13,7 +13,7 @@
             </span>
           </div>
           <div class="jobs-ads">
-            <JobCard v-for="jobAd in jobAds" :key="jobAd.id" :jobAd="jobAd" />
+            <JobCard v-for="jobAd in jobAds" :key="jobAd.id" :jobAd="jobAd" :company="companies.find((c) => c.id == jobAd.company)" />
           </div>
         </div>
       </div>
@@ -21,23 +21,30 @@
   </main>
 </template>
 
-<script setup lang="js">
-
-let resCount = ref(0);
-let jobAds = ref([]);
-
-import { supabase } from "../lib/supabaseClient";
-
-async function getJobAds() {
-  const { data } = await supabase.from("companies").select();
-  jobAds.value = data;
-  console.log(data);
-}
-
+<script setup lang="ts">
 import SearchTop from "@/components/search/SearchTop.vue";
 import Filters from "@/components/search/Filters.vue";
 import JobCard from "@/components/cards/JobCard.vue";
 import { onMounted, ref } from "vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient"
+import { type JobAd } from "@/types/JobAd.vue";
+import { type Company } from "@/types/Company.vue";
+
+let resCount = ref(0);
+let jobAds = ref<JobAd[]>([]);
+let companies = ref<Company[]>([]);
+
+async function getJobAds() {
+  const { data } = await supabase.from("job_ads").select();
+  jobAds.value = data;
+  resCount.value = data.length;
+}
+
+async function getCompanies() {
+  const { data } = await supabase.from("companies").select();
+  companies.value = data;
+}
 
 defineOptions({
   inheritAttrs: false,
@@ -45,36 +52,7 @@ defineOptions({
 
 onMounted(() => {
   getJobAds();
-  jobAds = [
-    {
-      id: 1,
-      title: "Développeur Frontend",
-      company: "Google",
-      location: "Paris",
-      contract: "CDI",
-      salary: "60k - 80k",
-      tags: ["React", "TypeScript", "Redux"],
-    },
-    {
-      id: 2,
-      title: "Développeur Backend",
-      company: "Facebook",
-      location: "Paris",
-      contract: "CDI",
-      salary: "60k - 80k",
-      tags: ["Node.js", "TypeScript", "GraphQL"],
-    },
-    {
-      id: 3,
-      title: "Développeur Fullstack",
-      company: "Amazon",
-      location: "Paris",
-      contract: "CDI",
-      salary: "60k - 80k",
-      tags: ["React", "Node.js", "TypeScript"],
-    },
-  ];
-  resCount.value = jobAds.length;
+  getCompanies();
 });
 </script>
 

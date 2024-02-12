@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from "vue-router";
 import SearchHome from "../components/search/SearchHome.vue";
 </script>
+
 <template>
   <main>
     <p class="home-top-text">Un outil pratique</p>

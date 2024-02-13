@@ -2,7 +2,7 @@
   <StepDisplay :maxStep="maxStep" :actualStep="step" />
   <section v-show="step === 1" class="form-section">
     <h2>L'entreprise</h2>
-    <form class="form-container-base">
+    <form class="form-container-base" @submit.prevent="createAccount">
       <div class="form-group">
         <label for="company_name">Dénomination*</label>
         <input

@@ -113,7 +113,6 @@ async function getFaqItems() {
   const { data } = await supabase.from("faq").select();
   faqItems.value = data;
   resCount.value = data.length;
-  console.log(data);
 }
 
 onMounted(() => {

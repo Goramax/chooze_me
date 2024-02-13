@@ -2,18 +2,28 @@
   <StepDisplay :maxStep="maxStep" :actualStep="step" />
   <section v-show="step === 1" class="form-section">
     <h2>Identité</h2>
-    <form class="form-container-base">
+    <form class="form-container-base" @submit.prevent="createAccount">
       <div class="form-group">
         <label for="lastname">Nom*</label>
         <input type="text" id="lastname" placeholder="Nom" v-model="lastname" />
       </div>
       <div class="form-group">
         <label for="firstname">Prénom*</label>
-        <input type="text" id="firstname" placeholder="Prénom" v-model="firstname" />
+        <input
+          type="text"
+          id="firstname"
+          placeholder="Prénom"
+          v-model="firstname"
+        />
       </div>
       <div class="form-group">
         <label>Date de naissance*</label>
-        <input type="date" :min="getMinDate()" :max="getDate()" v-model="birthdate" />
+        <input
+          type="date"
+          :min="getMinDate()"
+          :max="getDate()"
+          v-model="birthdate"
+        />
       </div>
     </form>
   </section>
@@ -22,11 +32,21 @@
     <form class="form-container-base">
       <div class="form-group">
         <label for="email">Adresse mail*</label>
-        <input type="email" id="email" placeholder="Adresse mail" v-model="email" />
+        <input
+          type="email"
+          id="email"
+          placeholder="Adresse mail"
+          v-model="email"
+        />
       </div>
       <div class="form-group">
         <label for="password">Mot de passe*</label>
-        <input type="password" id="password" placeholder="Mot de passe" v-model="password" />
+        <input
+          type="password"
+          id="password"
+          placeholder="Mot de passe"
+          v-model="password"
+        />
       </div>
       <div class="form-group">
         <label for="password-confirm">Confirmer le mot de passe*</label>
@@ -186,7 +206,7 @@ onMounted(() => {
   margin-top: 20px;
   gap: 20px;
   .next,
-  .prev {
+  .prev, button {
     flex: 1;
   }
 }

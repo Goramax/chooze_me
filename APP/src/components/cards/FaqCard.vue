@@ -22,7 +22,6 @@ const props = defineProps({
   },
 });
 
-console.log(props.faqItem);
 </script>
 
 <style scoped lang="scss">

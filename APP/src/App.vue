@@ -3,6 +3,10 @@ import { RouterLink, RouterView, onBeforeRouteUpdate } from "vue-router";
 import { ref } from "vue";
 import IconMap from "./components/icons/IconMap.vue";
 import IconLogo from "./components/icons/IconLogo.vue";
+import { onMounted } from "vue";
+// @ts-ignore
+import { supabase } from "./lib/supabaseClient";
+import { Transition } from "vue";
 
 function getScreenWidth() {
   if (window.innerWidth > 768) {
@@ -13,6 +17,21 @@ function getScreenWidth() {
 }
 
 let showMobileMenu = ref(false);
+
+let session = ref(null)
+const user = ref(null)
+
+onMounted(() => {
+  supabase.auth.getSession().then(({ data }: { data: any }) => {
+    session.value = data.session
+  })
+
+  supabase.auth.onAuthStateChange((_: any, _session: any) => {
+    session.value = _session
+  })
+})
+
+
 
 </script>
 

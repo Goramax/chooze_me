@@ -3,7 +3,7 @@
     <div class="faq-card__header">
       <span class="btn--primary favorite-btn"><IconHeart /></span>
     </div>
-    <span class="category">{{ faqItem?.category }}</span>
+    <span class="category">{{ faqItem?.sector }}</span>
     <h3>{{ faqItem?.title }}</h3>
     <RouterLink :to="'aide-juridique/' + faqItem?.id" class="btn--primary"
       >En savoir plus</RouterLink
@@ -14,13 +14,15 @@
 <script setup lang="ts">
 import IconHeart from "@/components/icons/IconHeart.vue";
 import { defineProps } from "vue";
+import { type Faq } from "@/types/Faq.vue";
 const props = defineProps({
-  faqItem: Object as () => {
-    id: Number;
-    title: String;
-    category: String;
+  faqItem: {
+    type: Object as () => Faq,
+    required: true,
   },
 });
+
+console.log(props.faqItem);
 </script>
 
 <style scoped lang="scss">

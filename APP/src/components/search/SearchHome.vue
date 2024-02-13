@@ -73,7 +73,6 @@ function search() {
       diploma: params.diploma,
     },
   });
-
 }
 
 onMounted(() => {

@@ -97,40 +97,26 @@ h1 {
 import { ref, onMounted, useAttrs } from "vue";
 import IconSearch from "@/components/icons/IconSearch.vue";
 import FaqCard from "@/components/cards/FaqCard.vue";
+import { type Faq } from "@/types/Faq.vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient"
 
 defineOptions({
   inheritAttrs: false,
 });
 
 let resCount = ref(0);
-let faqItems = ref([]) as any;
+let faqItems = ref<Faq[]>([]);
+
+
+async function getFaqItems() {
+  const { data } = await supabase.from("faq").select();
+  faqItems.value = data;
+  resCount.value = data.length;
+  console.log(data);
+}
 
 onMounted(() => {
-  faqItems = [
-    {
-      id: 1,
-      title:
-        "Quels documents dois-je envoyer à mon entreprise lors de l'embauche ?",
-      category: "Administratif",
-    },
-    {
-      id: 2,
-      title:
-        "Quelle rémunération puis-je prétendre pour ma première année d'alternance ?",
-      category: "Salaires ",
-    },
-    {
-      id: 3,
-      title:
-        "Mon employeur doit-il prendre en charge mes trajets domicile-travail ?",
-      category: "Transport",
-    },
-    {
-      id: 4,
-      title: "Un alternant peut-il faire des heures supplémentaires ?",
-      category: "Horaires de travail",
-    },
-  ];
-  resCount.value = faqItems.length;
+  getFaqItems();
 });
 </script>

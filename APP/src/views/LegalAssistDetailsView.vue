@@ -1,36 +1,17 @@
 <template>
   <main>
     <div class="legal-assist-details content-container">
-      <span class="category">Administratif</span>
+      <span class="category">{{ faq?.sector }}</span>
       <h1>
-        Quels documents dois-je envoyer à mon entreprise lors de l'embauche ?
+        {{ faq?.title }}
       </h1>
       <!-- WYSIWYG -->
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit
-        amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet, consectetur
-        adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-        in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-        velit esse cillum dolore eu fugiat nulla pariatur.
-      </p>
-      <!-- End WYSIWYG -->
+      <div class="description-text">
+        <p>
+          {{ faq?.description }}
+        </p>
+        <!-- End WYSIWYG -->
+      </div>
     </div>
   </main>
 </template>
@@ -47,4 +28,27 @@ h1 {
     font-size: $font-lp;
   }
 }
+.description-text {
+  white-space: pre-line;
+}
 </style>
+
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import { type Faq } from "@/types/Faq.vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient";
+
+let faq = ref<Faq | null>(null);
+let faqId = useRoute().params.id as string;
+
+async function getFaq() {
+  const { data } = await supabase.from("faq").select().eq("id", faqId);
+  faq.value = data[0];
+}
+
+onMounted(() => {
+  getFaq();
+});
+</script>

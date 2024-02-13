@@ -39,7 +39,9 @@ import IconPerson from '../icons/IconPerson.vue';
         </span>
       </div>
       <div class="__right">
-        <span class="btn--primary search-btn" @click="search">Chercher<IconSearch /></span>
+        <span class="btn--primary search-btn" @click="search"
+          >Chercher<IconSearch
+        /></span>
       </div>
     </form>
   </div>
@@ -76,7 +78,7 @@ function search() {
 }
 
 onMounted(() => {
-let responseJobs = [
+  let responseJobs = [
     {
       id: 1,
       name: "Manager de projet",
@@ -102,27 +104,31 @@ let responseJobs = [
       name: "Designer UI/UX",
     },
   ];
-let responseDiplomas = [
-    {
-      id: 1,
-      name: "Bac +5",
+  let responseDiplomas = [
+  {
+      id: 2,
+      name: "Baccalauréat",
     },
     {
-      id: 2,
-      name: "Bac +4",
+      id: 1,
+      name: "Brevet des collèges",
     },
     {
       id: 3,
-      name: "Bac +3",
-    },
-    {
-      id: 4,
       name: "Bac +2",
     },
     {
+      id: 4,
+      name: "Bac +3",
+    },
+    {
+      id: 5,
+      name: "Bac +4",
+    },
+    {
       id: 6,
-      name: "Baccalauréat",
-    }
+      name: "Bac +5",
+    },
   ];
   jobs.value = responseJobs;
   diplomas.value = responseDiplomas;
@@ -130,8 +136,6 @@ let responseDiplomas = [
   params.job = responseJobs[0].id;
   params.diploma = responseDiplomas[0].id;
 });
-
-
 </script>
 
 <style scoped lang="scss">

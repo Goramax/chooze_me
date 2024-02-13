@@ -2,6 +2,7 @@
 import { RouterLink, RouterView, onBeforeRouteUpdate } from "vue-router";
 import { ref } from "vue";
 import IconMap from "./components/icons/IconMap.vue";
+import IconLogo from "./components/icons/IconLogo.vue";
 
 function getScreenWidth() {
   if (window.innerWidth > 768) {
@@ -20,7 +21,7 @@ let showMobileMenu = ref(false);
     <div class="header-container">
       <div class="left">
         <RouterLink to="/" class="logo">
-          <img alt="Logo ChoozeMe" src="./assets/imgs/logo.png" />
+          <IconLogo class="logo__icon" />
         </RouterLink>
         <div class="menu" v-if="getScreenWidth() === 'desktop'">
           <RouterLink to="/trouver-un-job">Trouver mon job</RouterLink>
@@ -104,6 +105,17 @@ header {
     .menu {
       display: flex;
       gap: 20px;
+    }
+    .logo{
+      :deep(svg){
+        width: 120px;
+        .cls-1 {
+          fill: $color-primary;
+        }
+        .cls-2 {
+          fill: none;
+        }
+      }
     }
     .menu {
       a {

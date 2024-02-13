@@ -5,15 +5,15 @@
     <form class="form-container-base">
       <div class="form-group">
         <label for="lastname">Nom*</label>
-        <input type="text" id="lastname" placeholder="Nom" />
+        <input type="text" id="lastname" placeholder="Nom" v-model="lastname" />
       </div>
       <div class="form-group">
         <label for="firstname">Prénom*</label>
-        <input type="text" id="firstname" placeholder="Prénom" />
+        <input type="text" id="firstname" placeholder="Prénom" v-model="firstname" />
       </div>
       <div class="form-group">
         <label>Date de naissance*</label>
-        <input type="date" :min="getMinDate()" :max="getDate()" />
+        <input type="date" :min="getMinDate()" :max="getDate()" v-model="birthdate" />
       </div>
     </form>
   </section>
@@ -22,11 +22,11 @@
     <form class="form-container-base">
       <div class="form-group">
         <label for="email">Adresse mail*</label>
-        <input type="email" id="email" placeholder="Adresse mail" />
+        <input type="email" id="email" placeholder="Adresse mail" v-model="email" />
       </div>
       <div class="form-group">
         <label for="password">Mot de passe*</label>
-        <input type="password" id="password" placeholder="Mot de passe" />
+        <input type="password" id="password" placeholder="Mot de passe" v-model="password" />
       </div>
       <div class="form-group">
         <label for="password-confirm">Confirmer le mot de passe*</label>
@@ -34,6 +34,7 @@
           type="password"
           id="password-confirm"
           placeholder="Confirmer le mot de passe"
+          v-model="passwordConfirm"
         />
       </div>
     </form>
@@ -65,16 +66,34 @@
     <span class="next btn--primary" v-show="step < maxStep" @click="step++"
       >Suivant</span
     >
+    <button
+      class="btn--primary"
+      v-show="step === maxStep"
+      @click="createAccount"
+    >
+      Créer mon compte
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import StepDisplay from "@/components/Registration/StepDisplay.vue";
 import { onMounted, ref } from "vue";
+// @ts-ignore
+import { supabase } from "@/lib/supabaseClient";
+import router from "@/router";
 let step = ref(1);
 let maxStep = ref(step.value);
-
 let job = ref([]) as any;
+
+let email = ref("");
+let password = ref("");
+let passwordConfirm = ref("");
+let lastname = ref("");
+let firstname = ref("");
+let birthdate = ref("");
+let selectedJob = ref("");
+let cv = ref("");
 
 function getDate() {
   const date = new Date();
@@ -94,6 +113,29 @@ function getMinDate() {
   day = day.length > 1 ? day : "0" + day;
   return year + "-" + month + "-" + day;
 }
+
+async function createAccount() {
+  const { data, error } = await supabase.auth
+    .signUp({
+      email: email.value,
+      password: password.value,
+      options: {
+        data: {
+          is_company: false,
+          lastname: lastname.value,
+          firstname: firstname.value,
+          birthdate: birthdate.value,
+          job: selectedJob.value,
+          cv: cv.value,
+        },
+      },
+    })
+    .then(() => {
+      alert("un email de confirmation a été envoyé à " + email.value);
+      router.push("/connexion");
+    });
+}
+
 onMounted(() => {
   let maxStepTmp = 0;
   document.querySelectorAll(".form-section").forEach((section) => {
@@ -125,7 +167,7 @@ onMounted(() => {
     {
       id: 6,
       name: "Designer UI/UX",
-    }
+    },
   ];
 });
 </script>

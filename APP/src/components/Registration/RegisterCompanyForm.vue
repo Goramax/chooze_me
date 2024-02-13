@@ -155,6 +155,7 @@ async function createAccount() {
       },
     })
     .then(() => {
+      alert("un email de confirmation a été envoyé à " + email.value);
       router.push("/connexion");
     });
 }

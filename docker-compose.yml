@@ -49,7 +49,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.choozemeapp.rule=Host(`choozeme.maxime-malherbe.fr`)"
-      - "traefik.http.routers.apchoozemeappp.entrypoints=websecure"
+      - "traefik.http.routers.choozemeappp.entrypoints=websecure"
       - "traefik.http.routers.choozemeapp.tls=true"
       - "traefik.http.routers.choozemeapp.tls.certresolver=myresolver"
     networks:

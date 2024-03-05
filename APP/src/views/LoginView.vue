@@ -31,25 +31,20 @@ import router from "@/router";
 let email = ref("");
 let password = ref("");
 
+defineProps({
+  session: Object as any,
+});
+
 defineOptions({
-  inheritAttrs: false,
+  inheritAttrs: true,
 });
 
 
 onMounted(() => {
-  let user = supabase.auth.getUser();
-  user.then((data: any) => {
-    console.log(data);
-    if (data) {
-      router.push("/");
-    }
-  });
+  if (localStorage.getItem("session")) {
+    router.push("/");
+  }
 });
-
-async function getUser(){
-  const user = supabase.auth.user()
-  return user
-}
 
 async function login() {
   const { data, error } = await supabase.auth.signInWithPassword({

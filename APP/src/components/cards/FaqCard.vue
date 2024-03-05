@@ -32,6 +32,9 @@ const props = defineProps({
   padding: 20px;
   display: flex;
   flex-direction: column;
+  h3{
+    flex: 1;
+  }
   .faq-card__header {
     display: flex;
     justify-content: end;

@@ -7,6 +7,7 @@ import { onMounted } from "vue";
 // @ts-ignore
 import { supabase } from "./lib/supabaseClient";
 import { Transition } from "vue";
+import RightMenu from "./components/menu/RightMenu.vue";
 
 function getScreenWidth() {
   if (window.innerWidth > 768) {
@@ -18,21 +19,33 @@ function getScreenWidth() {
 
 let showMobileMenu = ref(false);
 
-let session = ref(null)
-const user = ref(null)
+let session = ref(null);
+let user = ref(null);
 
 onMounted(() => {
   supabase.auth.getSession().then(({ data }: { data: any }) => {
-    session.value = data.session
-  })
-
+    session.value = data.session;
+    if (data.session) {
+      supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", data.session.user.id)
+        .then(({ data, error }: { data: any; error: any }) => {
+          if (error) {
+            console.log(error);
+          } else {
+            if (data.length > 0) {
+              user.value = data[0];
+              console.log("user", data[0]);
+            }
+          }
+        });
+    }
+  });
   supabase.auth.onAuthStateChange((_: any, _session: any) => {
-    session.value = _session
-  })
-})
-
-
-
+    session.value = _session;
+  });
+});
 </script>
 
 <template>
@@ -52,18 +65,7 @@ onMounted(() => {
         <span class="icon"><IconMap /></span><span>Caen</span>
       </div>
       <div class="right">
-        <RouterLink
-          to="/inscription"
-          class="btn--secondary"
-          v-if="getScreenWidth() === 'desktop'"
-          >Inscription</RouterLink
-        >
-        <RouterLink
-          to="/connexion"
-          class="btn--primary"
-          v-if="getScreenWidth() === 'desktop'"
-          >Connexion</RouterLink
-        >
+        <RightMenu :session="session" :getScreenWidth="getScreenWidth" />
         <div
           class="burger"
           v-if="getScreenWidth() === 'mobile'"
@@ -83,23 +85,37 @@ onMounted(() => {
       >
         <span class="close" @click="showMobileMenu = false"> X </span>
         <div class="mobile-top-menu">
-          <RouterLink to="/" @click="showMobileMenu = false">Accueil</RouterLink>
-          <RouterLink to="/trouver-un-job" @click="showMobileMenu = false">Trouver mon job</RouterLink>
-          <RouterLink to="/messages" @click="showMobileMenu = false">Messages</RouterLink>
-          <RouterLink to="/aide-juridique" @click="showMobileMenu = false">Assistance Juridique</RouterLink>
+          <RouterLink to="/" @click="showMobileMenu = false"
+            >Accueil</RouterLink
+          >
+          <RouterLink to="/trouver-un-job" @click="showMobileMenu = false"
+            >Trouver mon job</RouterLink
+          >
+          <RouterLink to="/messages" @click="showMobileMenu = false"
+            >Messages</RouterLink
+          >
+          <RouterLink to="/aide-juridique" @click="showMobileMenu = false"
+            >Assistance Juridique</RouterLink
+          >
         </div>
         <div class="mobile-bottom-menu">
-          <RouterLink to="/inscription" class="btn--primary" @click="showMobileMenu = false"
+          <RouterLink
+            to="/inscription"
+            class="btn--primary"
+            @click="showMobileMenu = false"
             >Inscription</RouterLink
           >
-          <RouterLink to="/connexion" class="btn--primary inverted" @click="showMobileMenu = false"
+          <RouterLink
+            to="/connexion"
+            class="btn--primary inverted"
+            @click="showMobileMenu = false"
             >Connexion</RouterLink
           >
         </div>
       </div>
     </Transition>
   </header>
-  <RouterView />
+  <RouterView :session="session" :user="user" />
 
   <!-- <footer>FOOTER</footer> -->
 </template>
@@ -124,9 +140,13 @@ header {
     .menu {
       display: flex;
       gap: 20px;
+      .right-menu {
+        display: flex;
+        gap: 20px;
+      }
     }
-    .logo{
-      :deep(svg){
+    .logo {
+      :deep(svg) {
         width: 120px;
         .cls-1 {
           fill: $color-primary;

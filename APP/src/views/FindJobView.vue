@@ -131,4 +131,4 @@ main {
     }
   }
 }
-</style>
+</style>@/types/JobAd.vue

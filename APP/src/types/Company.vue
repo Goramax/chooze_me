@@ -1,4 +1,4 @@
-<script lang="ts">
+<script setup lang="ts">
 export type Company = {
   id: number;
   name: string;

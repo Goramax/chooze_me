@@ -105,4 +105,4 @@ const props = defineProps({
   }
 }
 </style>
-@/types/jobAd
+@/types/jobAd@/types/JobAd.vue

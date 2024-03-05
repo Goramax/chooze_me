@@ -195,4 +195,4 @@ onMounted(() => {
 .btn-container {
   display: flex;
 }
-</style>
+</style>@/types/JobAd.vue

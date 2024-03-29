@@ -2,9 +2,9 @@
   <div class="main-container">
     <div class="new-user">
       <h2>Particulier</h2>
-      <div class="big-text">Vous êtes<br />un chercheur d'emploi ?</div>
+      <div class="big-text">Tu es<br />un chercheur d'emploi ?</div>
       <div class="sub-text">
-        Trouvez des offres d'emploi pour dénicher un employeur.
+        Trouve des offres d'emploi pour dénicher un employeur.
       </div>
       <div
         class="btn--secondary no-border"

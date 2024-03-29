@@ -7,10 +7,10 @@ import SearchHome from "../components/search/SearchHome.vue";
   <main>
     <p class="home-top-text">Un outil pratique</p>
     <h1 class="home-title">
-      Trouvez votre <b>prochain job</b><br />simplement.
+      Trouve ton <b>prochain job</b><br />simplement.
     </h1>
     <p class="home-subtext">
-      Un service gratuit pour que chaque jeune puisse trouver un emploi
+      Un service gratuit pour que chaque jeune puisse trouver un emploi et un assistant juridique pour que tu sois aidé tout le long de ta recherche.
     </p>
     <SearchHome />
   </main>

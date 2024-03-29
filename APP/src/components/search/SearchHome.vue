@@ -22,6 +22,9 @@ import IconPerson from '../icons/IconPerson.vue';
           </span>
           <select name="location" id="location-search">
             <option value="caen">Caen</option>
+            <option value="caen">Rouen</option>
+            <option value="caen">Le Havre</option>
+            <option value="caen">Flers</option>
           </select>
         </span>
         <span class="select-search">

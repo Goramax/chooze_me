@@ -82,29 +82,25 @@ function search() {
 
 onMounted(() => {
   let responseJobs = [
-    {
+  {
       id: 1,
-      name: "Manager de projet",
+      name: "Livreur",
     },
     {
       id: 2,
-      name: "Développeur Frontend",
+      name: "Caissier",
     },
     {
       id: 3,
-      name: "Développeur Backend",
+      name: "Hôte d'accueil",
     },
     {
       id: 4,
-      name: "Développeur Fullstack",
+      name: "Saisonier agricole",
     },
     {
       id: 5,
-      name: "Community Manager",
-    },
-    {
-      id: 6,
-      name: "Designer UI/UX",
+      name: "Serveur",
     },
   ];
   let responseDiplomas = [

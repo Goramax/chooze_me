@@ -285,12 +285,12 @@ onMounted(() => {
     {
       id: 1,
       name: "Wade Warren",
-      avatar: "./src/assets/imgs/warren.png",
+      avatar: "/src/assets/imgs/warren.png",
     },
     {
       id: 2,
       name: "John Doe",
-      avatar: "./src/assets/imgs/user.webp",
+      avatar: "/src/assets/imgs/user.webp",
     },
   ];
   messages.value = [

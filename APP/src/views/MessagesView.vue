@@ -273,6 +273,8 @@ main {
 import { ref, onMounted } from "vue";
 import IconArrowLeft from "@/components/icons/IconArrowLeft.vue";
 import IconSend from "@/components/icons/IconSend.vue";
+import ImageAvatar from "@/assets/imgs/user.webp";
+import ImageUser from "@/assets/imgs/warren.png";
 
 let contacts = ref([]) as any;
 let messages = ref([]) as any;
@@ -285,12 +287,12 @@ onMounted(() => {
     {
       id: 1,
       name: "Wade Warren",
-      avatar: "/src/assets/imgs/warren.png",
+      avatar: ImageAvatar,
     },
     {
       id: 2,
       name: "John Doe",
-      avatar: "/src/assets/imgs/user.webp",
+      avatar: ImageUser,
     },
   ];
   messages.value = [

@@ -284,26 +284,26 @@ onMounted(() => {
   contacts.value = [
     {
       id: 1,
-      name: "John Doe",
-      avatar: "https://thispersondoesnotexist.com/",
+      name: "Wade Warren",
+      avatar: "./src/assets/imgs/warren.png",
     },
     {
       id: 2,
-      name: "Jane Doe",
-      avatar: "https://thispersondoesnotexist.com/",
+      name: "John Doe",
+      avatar: "./src/assets/imgs/user.webp",
     },
   ];
   messages.value = [
     {
       id: 1,
-      sender: 1,
-      content: "Hello",
+      sender: 2,
+      content: "Bonjour, ton profil m’intéresse. Serait-il possible d’organiser un rendez-vous vendredi prochain à 8h00?",
       date: new Date(),
     },
     {
       id: 2,
-      sender: 2,
-      content: "Hi",
+      sender: 1,
+      content: "Merci pour votre réponse, avec plaisir !",
       date: new Date(),
     },
   ];
@@ -312,6 +312,13 @@ onMounted(() => {
 const selectContact = (contact: any) => {
   selectedContact.value = contact;
   // fetch messages
+  setTimeout(() => {
+    const messagesBox = document.querySelector(".messages-box");
+    if (messagesBox) {
+      messagesBox.scrollTop = messagesBox.scrollHeight;
+    }
+  }, 100);
+
 };
 
 const send = (e: Event) => {
